@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+.venv/
+
+# Secrets and env
+.env
+secrets/
+keys/
+*.pem
+*.key
+
+# Logs and DB
+*.log
+analysis_logs/
+db.sqlite3
+
+# Docker
+docker-compose.override.yml
