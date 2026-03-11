@@ -1,0 +1,10 @@
+python-telegram-bot==13.15
+redis==4.5.5
+celery==5.3.1
+requests==2.31.0
+numpy==1.26.0
+scipy==1.11.0
+uvicorn==0.22.0
+fastapi==0.101.1
+gunicorn==20.1.0
+pytest==7.4.0
