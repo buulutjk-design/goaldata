@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  redis:
+    image: redis:7-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+
+  bot:
+    build: .
+    environment:
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
+      - ADMIN_ID=${ADMIN_ID}
+      - REDIS_URL=${REDIS_URL}
+    depends_on:
+      - redis
+    restart: always
+
+  worker:
+    build: .
+    command: celery -A worker.celery worker --loglevel=info --concurrency=2
+    environment:
+      - CELERY_BROKER_URL=${CELERY_BROKER_URL}
+      - CELERY_RESULT_BACKEND=${CELERY_RESULT_BACKEND}
+      - REDIS_URL=${REDIS_URL}
+    depends_on:
+      - redis
+    restart: always
